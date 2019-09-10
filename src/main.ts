@@ -11,14 +11,16 @@ Vue.use(ElementUI, {
   i18n: (key: string, value: string) => i18n.t(key, value)
 });
 
-console.log(router);
-
-import "./registerServiceWorker";
+import 'element-ui/lib/theme-chalk/index.css';
+import '@/permission'
+import "@/style/index.less"
+import "@/pwa/registerServiceWorker";
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount("#app");
