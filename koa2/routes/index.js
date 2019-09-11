@@ -1,10 +1,8 @@
+/* eslint-disable */
 const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
-    console.log('11')
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
+  ctx.body = 'koa2 string'
 })
 
 router.get('/string', async (ctx, next) => {

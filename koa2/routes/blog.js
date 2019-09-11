@@ -1,3 +1,4 @@
+/* eslint-disable */
 const router = require('koa-router')()
 const {
   getList,
@@ -16,7 +17,6 @@ router.get('/list', async function (ctx, next) {
     const keyword = ctx.query.keyword || ''
 
     if (ctx.query.isadmin) {
-        console.log('is admin')
         // 管理员界面
         if (ctx.session.username == null) {
             console.error('is admin, but no login')
