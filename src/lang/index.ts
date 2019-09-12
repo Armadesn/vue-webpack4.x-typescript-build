@@ -30,13 +30,13 @@ export const getLocale = () => {
     return cookieLanguage;
   }
 
-  const language = navigator.language.toLowerCase();
-  const locales = Object.keys(messages);
-  for (const locale of locales) {
-    if (language.indexOf(locale) > -1) {
-      return locale;
-    }
-  }
+  //   const language = navigator.language.toLowerCase();
+  //   const locales = Object.keys(messages);
+  //   for (const locale of locales) {
+  //     if (language.indexOf(locale) > -1) {
+  //       return locale;
+  //     }
+  //   }
 
   // Default language is english
   return "en";

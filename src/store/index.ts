@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export interface IRootState {
   app: IAppState;
-  user:IUserState
+  user: IUserState;
 }
 
 export default new Vuex.Store<IRootState>({});

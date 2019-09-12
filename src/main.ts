@@ -11,9 +11,9 @@ Vue.use(ElementUI, {
   i18n: (key: string, value: string) => i18n.t(key, value)
 });
 
-import 'element-ui/lib/theme-chalk/index.css';
-import '@/permission'
-import "@/style/index.less"
+import "element-ui/lib/theme-chalk/index.css";
+import "@/permission";
+import "@/style/index.less";
 import "@/pwa/registerServiceWorker";
 
 Vue.config.productionTip = false;

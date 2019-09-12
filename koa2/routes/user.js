@@ -1,6 +1,6 @@
 /* eslint-disable */
 const router = require('koa-router')()
-const { login } = require('../controller/user')
+const { login, getUsers } = require('../controller/user')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 
 router.prefix('/api/user')
@@ -8,15 +8,23 @@ router.prefix('/api/user')
 router.post('/login', async function (ctx, next) {
     const { username, password } = ctx.request.body
     const data = await login(username, password)
-    if (data.username) {
-        // 设置 session
-        ctx.session.username = data.username
-        ctx.session.realname = data.realname
-
-        ctx.body = new SuccessModel()
+    if (data.accessToken) {
+        ctx.body = new SuccessModel(data)
         return
     }
     ctx.body = new ErrorModel('登录失败')
+})
+
+router.get('/logout', async function(ctx, next ) {
+    ctx.body = new SuccessModel()
+    return
+})
+
+router.post('/getUsers', async function( ctx, next ) {
+    const { name } = ctx.request.body
+    const data = await getUsers( name )
+    ctx.body = new SuccessModel(data)
+    return
 })
 
 

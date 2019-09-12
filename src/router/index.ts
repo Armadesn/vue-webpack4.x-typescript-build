@@ -27,10 +27,11 @@ export const constantRoutes: RouteConfig[] = [
     ]
   },
   {
-    path: '/login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
+    path: "/login",
+    component: () =>
+      import(/* webpackChunkName: "login" */ "@/views/login/index.vue"),
     meta: { hidden: true }
-  },
+  }
 ];
 
 const createRouter = () =>

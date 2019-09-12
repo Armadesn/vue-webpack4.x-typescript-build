@@ -1,56 +1,54 @@
-import Axios from '@util/http'
-
+import Axios from "@/utils/http";
 
 export const getUsers = (params: any) =>
   Axios({
-    url: '/users',
-    method: 'get',
+    url: "/users",
+    method: "get",
     params
-  })
+  });
 
 export const getUserInfo = (data: any) =>
   Axios({
-    url: '/users/info',
-    method: 'post',
+    url: "/users/info",
+    method: "post",
     data
-  })
+  });
 
 export const getUserByName = (username: string) =>
   Axios({
     url: `/users/${username}`,
-    method: 'get'
-  })
+    method: "get"
+  });
 
 export const updateUser = (username: string, data: any) =>
   Axios({
     url: `/users/${username}`,
-    method: 'put',
+    method: "put",
     data
-  })
+  });
 
 export const deleteUser = (username: string) =>
   Axios({
     url: `/users/${username}`,
-    method: 'delete'
-  })
+    method: "delete"
+  });
 
 export const login = (data: any) =>
   Axios({
-    url: '/users/login',
-    method: 'post',
+    url: "/api/user/login",
+    method: "post",
     data
-  })
+  });
 
 export const logout = () =>
   Axios({
-    url: '/users/logout',
-    method: 'post'
-  })
+    url: "/users/logout",
+    method: "post"
+  });
 
 export const register = (data: any) =>
   Axios({
-    url: '/users/register',
-    method: 'post',
+    url: "/users/register",
+    method: "post",
     data
-  })
-
+  });
