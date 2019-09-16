@@ -52,8 +52,8 @@ export default class extends Vue {
     password: [{ required: true, message: "请输入密码", trigger: "blur" }]
   };
   created() {}
-  submitForm(name: string) {
-    (this.$refs[name] as ElForm).validate(async function(valid: boolean) {
+  private submitForm(name: string) {
+    (this.$refs.ruleForm as ElForm).validate(async(valid: boolean) => {
       if (valid) {
         await UserModule.LoginAcion(this.ruleForm);
         this.$router.push({

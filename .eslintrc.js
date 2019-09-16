@@ -20,10 +20,12 @@ module.exports = {
     'vue/eqeqeq': 'error',
     'vue/key-spacing': 'error',
     'vue/match-component-file-name': 'error',
-    'vue/object-curly-spacing': 'error'
+    'vue/object-curly-spacing': 'error',
+    "prettier/prettier": "off"
   },
   parserOptions: {
-    parser: "@typescript-eslint/parser"
+    parser: "@typescript-eslint/parser",
+    sourceType: 'module'
   },
   overrides: [
     {
