@@ -1,7 +1,7 @@
 const xss = require('xss')
 const { exec } = require('../db/mysql')
 
-const getList = async (author, keyword) => {
+const getList = async(author, keyword) => {
     let sql = `select * from blogs where 1=1 `
     if (author) {
         sql += `and author='${author}' `
@@ -14,13 +14,13 @@ const getList = async (author, keyword) => {
     return await exec(sql)
 }
 
-const getDetail = async (id) => {
+const getDetail = async(id) => {
     const sql = `select * from blogs where id='${id}'`
     const rows = await exec(sql)
     return rows[0]
 }
 
-const newBlog = async (blogData = {}) => {
+const newBlog = async(blogData = {}) => {
     // blogData 是一个博客对象，包含 title content author 属性
     const title = xss(blogData.title)
     // console.log('title is', title)
@@ -39,7 +39,7 @@ const newBlog = async (blogData = {}) => {
     }
 }
 
-const updateBlog = async (id, blogData = {}) => {
+const updateBlog = async(id, blogData = {}) => {
     // id 就是要更新博客的 id
     // blogData 是一个博客对象，包含 title content 属性
 
@@ -57,7 +57,7 @@ const updateBlog = async (id, blogData = {}) => {
     return false
 }
 
-const delBlog = async (id, author) => {
+const delBlog = async(id, author) => {
     // id 就是要删除博客的 id
     const sql = `delete from blogs where id='${id}' and author='${author}';`
     const delData = await exec(sql)
