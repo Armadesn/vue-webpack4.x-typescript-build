@@ -1,5 +1,5 @@
 const router = require('koa-router')()
-const { login, getUsers } = require('../controller/user')
+const { login, getInfo } = require('../controller/user')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 
 router.prefix('/api/user')
@@ -20,9 +20,9 @@ router.get('/logout', async function(ctx, next ) {
     return
 })
 
-router.post('/getUsers', async( ctx, next ) => {
-    const { name } = ctx.request.body
-    const data = await getUsers( name )
+router.post('/info', async( ctx, next ) => {
+    const isAdmin = ctx.request.header['x-access-token'] == 'admin-token'
+    const data = await getInfo( isAdmin )
     ctx.body = new SuccessModel(data)
     return
 })

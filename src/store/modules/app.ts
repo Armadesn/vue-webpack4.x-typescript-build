@@ -39,6 +39,19 @@ class App extends VuexModule implements IAppState {
   public device = DeviceType.Desktop;
   public language = getLocale();
   public size = getSize() || "medium";
+
+  @Mutation
+  private SET_LANGUAGE(language: string) {
+    this.language = language
+    setLanguage(this.language)
+  }
+
+
+  @Action
+  public SetLanguage(language: string) {
+    this.SET_LANGUAGE(language)
+  }
+  
 }
 
 export const AppModule = getModule(App);

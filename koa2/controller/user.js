@@ -52,17 +52,13 @@ const login = async(username, password) => {
     }
 }
 
-const getUsers = async( name ) => {
-    const users = userList.filter(user => {
-        const lowerCaseName = user.name.toLowerCase()
-        return !(name && lowerCaseName.indexOf(name.toLowerCase()) < 0)
-    })
+const getInfo = async( isAdmin ) => {
     return {
-        items: users
+        user: isAdmin ? userList[0] : userList[1]
     }
 }
 
 module.exports = {
     login,
-    getUsers
+    getInfo
 }

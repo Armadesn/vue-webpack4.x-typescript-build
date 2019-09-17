@@ -11,21 +11,21 @@
         <h3 class="title">
           {{ $t("login.title") }}
         </h3>
+        <LangSelect></LangSelect>
       </div>
       <el-form-item prop="username">
-        <el-input v-model="ruleForm.username"></el-input>
+        <el-input v-model="ruleForm.username" :placeholder="$t('login.username')"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input
           type="password"
           v-model="ruleForm.password"
+          :placeholder="$t('login.password')"
           autocomplete="off"
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')"
-          >登录</el-button
-        >
+        <el-button type="primary" @click="submitForm('ruleForm')">{{$t('login.logIn')}}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -38,9 +38,15 @@ import { Form as ElForm, Input } from "element-ui";
 
 import { UserModule } from "../../store/modules/user";
 
+import LangSelect from "../../components/LangSelect/index.js"
+
 const prefixCls = "login";
 
-@Component({})
+@Component({
+    components: {
+    LangSelect
+  }
+})
 export default class extends Vue {
   private prefixCls = prefixCls;
   private ruleForm = {
@@ -75,11 +81,12 @@ export default class extends Vue {
   position: relative;
   &-from {
     position: absolute;
-    width: 400px;
+    width: 300px;
     max-width: 100%;
     right: 160px;
     top: 50%;
     overflow: hidden;
+    margin-top: -150px;
     background: #fff;
     color: #17233d;
     padding: 20px;
@@ -92,6 +99,7 @@ export default class extends Vue {
     padding-bottom: 20px;
     text-align: center;
     color: #17233d;
+    position: relative;
   }
 }
 </style>
