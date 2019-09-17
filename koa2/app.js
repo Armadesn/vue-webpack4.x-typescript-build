@@ -15,8 +15,6 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 /** * @event session */
 const session = require('koa-generic-session')
-/** * @event redis存储 */
-const redisStore = require('koa-redis')
 /** * @event path路径 */
 const path = require('path')
 /** * @event fs文件操作 */
@@ -31,7 +29,6 @@ const user = require('./routes/user')
 /** * @event 登录接口 */
 const index = require('./routes/index')
 
-const { REDIS_CONF } = require('./conf/db')
 
 // error handler
 onerror(app)
@@ -80,11 +77,6 @@ app.use(session({
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000
   },
-  // 配置 redis
-  store: redisStore({
-    // all: '127.0.0.1:6379'   // 写死本地的 redis
-    all: `${REDIS_CONF.host}:${REDIS_CONF.port}`
-  })
 }))
 
 
