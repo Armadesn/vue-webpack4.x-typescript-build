@@ -1,4 +1,3 @@
-/* eslint-disable */
 /**
  * @event koa2
  */
@@ -10,26 +9,29 @@ const views = require('koa-views')
 const json = require('koa-json')
 /** * @event 错误 */
 const onerror = require('koa-onerror')
-/** * @event parser */
+/** * @event 转换postData */
 const bodyparser = require('koa-bodyparser')
 /** * @event console.log */
 const logger = require('koa-logger')
 /** * @event session */
 const session = require('koa-generic-session')
-/** * @event 路径 */
+/** * @event redis存储 */
+const redisStore = require('koa-redis')
+/** * @event path路径 */
 const path = require('path')
-/** * @event 文件 */
+/** * @event fs文件操作 */
 const fs = require('fs')
-/** * @event 输出 */
+/** * @event 日志输出 */
 const morgan = require('koa-morgan')
 
 /** * @event 博客接口 */
 const blog = require('./routes/blog')
-/** * @event 用户接口 */
+/** * @event 登录接口 */
 const user = require('./routes/user')
-/** * @event 主接口 */
+/** * @event 登录接口 */
 const index = require('./routes/index')
 
+const { REDIS_CONF } = require('./conf/db')
 
 // error handler
 onerror(app)
@@ -40,7 +42,11 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
+app.use(require('koa-static')(__dirname + '/public'))
 
+app.use(views(__dirname + '/views', {
+  extension: 'ejs'
+}))
 
 // logger
 app.use(async (ctx, next) => {
@@ -74,6 +80,11 @@ app.use(session({
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000
   },
+  // 配置 redis
+  store: redisStore({
+    // all: '127.0.0.1:6379'   // 写死本地的 redis
+    all: `${REDIS_CONF.host}:${REDIS_CONF.port}`
+  })
 }))
 
 
